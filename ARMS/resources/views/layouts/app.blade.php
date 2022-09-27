@@ -33,7 +33,7 @@
                 </div>
                 
                 {{-- <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex relative"> --}}
-                <div class="max-w-7xl py-6 px-8 sm:px-6 lg:px-8 flex relative">
+                <div class="py-6 px-8 sm:px-6 lg:px-8 flex relative w-full">
                     {{ $header }}
                 </div>
             </header>

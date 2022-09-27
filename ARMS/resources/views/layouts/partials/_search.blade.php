@@ -1,4 +1,4 @@
-<form action="" class=" w-full absolute top-5 right-0">
+<form action="" class=" w-3/4 absolute top-5 right-0">
     <div class="relative border-2 border-gray-100 rounded-lg">
         <div class="absolute top-0 left-0">
         {{-- <div class="absolute top-4 left-3"> --}}
