@@ -54,10 +54,26 @@ class GendersController extends Controller
         $formFields = $request->validate([
             'Gender' => 'required'
         ]);
-        $formFields['user_id'] = auth()->user()->id;
-        Gender::create($formFields);
+        // $formFields['user_id'] = auth()->user()->id;
+        switch ($formFields['Gender']) {
+            case 'Female':
+                return redirect(route('gender.index'))->with('error', 'Gender ' . $formFields['Gender'] . ' already exists!!');
+                break;
+            case 'Male':
+                return redirect(route('gender.index'))->with('error', 'Gender ' . $formFields['Gender'] . ' already exists!!');
+                break;
+            default:
+                return redirect(route('gender.index'))->with('error', 'Gender ' . $formFields['Gender'] . ' does not exists!!');
+                break;
+        }
+        // if ($formFields['Gender'] === 'Male') {
+        //     return redirect(route('gender.index'))->with('error', 'Gender' . $formFields['Gender'] . 'already exists!!');
+        // } elseif ($formFields['Gender'] === 'Female') {
+        //     return redirect(route('gender.index'))->with('error', 'Gender' . $formFields['Gender'] . 'already exists!!');
+        // }
+        // Gender::create($formFields);
 
-        return redirect(route('gender.index'))->with('success', 'Record Saved Successfully!!');
+        // return redirect(route('gender.index'))->with('success', 'Record Saved Successfully!!');
     }
 
     /**
