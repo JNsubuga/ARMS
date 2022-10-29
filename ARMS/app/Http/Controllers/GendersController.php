@@ -54,26 +54,28 @@ class GendersController extends Controller
         $formFields = $request->validate([
             'Gender' => 'required'
         ]);
-        // $formFields['user_id'] = auth()->user()->id;
+        $formFields['user_id'] = auth()->user()->id;
         switch ($formFields['Gender']) {
             case 'Female':
+                $gender = Gender::where('Gender', $formFields['Gender'])->first(['Gender']);
+                if (empty($gender)) {
+                    Gender::create($formFields);
+                    return redirect(route('gender.index'))->with('success', 'Record Saved Successfully!!');
+                }
                 return redirect(route('gender.index'))->with('error', 'Gender ' . $formFields['Gender'] . ' already exists!!');
                 break;
             case 'Male':
+                $gender = Gender::where('Gender', $formFields['Gender'])->first(['Gender']);
+                if (empty($gender)) {
+                    Gender::create($formFields);
+                    return redirect(route('gender.index'))->with('success', 'Record Saved Successfully!!');
+                }
                 return redirect(route('gender.index'))->with('error', 'Gender ' . $formFields['Gender'] . ' already exists!!');
                 break;
             default:
-                return redirect(route('gender.index'))->with('error', 'Gender ' . $formFields['Gender'] . ' does not exists!!');
+                return redirect(route('gender.index'))->with('error', 'Gender ' . $formFields['Gender'] . ' does not exist!!!');
                 break;
         }
-        // if ($formFields['Gender'] === 'Male') {
-        //     return redirect(route('gender.index'))->with('error', 'Gender' . $formFields['Gender'] . 'already exists!!');
-        // } elseif ($formFields['Gender'] === 'Female') {
-        //     return redirect(route('gender.index'))->with('error', 'Gender' . $formFields['Gender'] . 'already exists!!');
-        // }
-        // Gender::create($formFields);
-
-        // return redirect(route('gender.index'))->with('success', 'Record Saved Successfully!!');
     }
 
     /**
